@@ -1,1 +1,10 @@
+streamlit
+pandas
+numpy
+scikit-learn
+joblib
+pytz
+jdatetime
+xgboost
+lightgbm
 
