@@ -14,6 +14,19 @@ import time
 # ============================
 
 # --- Configuration ---
+st.markdown("""
+<style>
+@media screen and (max-width: 768px) {
+    .main .block-container {
+        max-width: 1024px;
+        margin: auto;
+        padding: 2rem;
+        zoom: 85%;
+    }
+}
+</style>
+""", unsafe_allow_html=True)
+
 st.set_page_config(page_title="Heart Disease Risk Checker", page_icon="❤️", layout="centered")
 
 # --- Load Models and Preprocessors ---
