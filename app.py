@@ -14,28 +14,6 @@ import time
 # ============================
 
 # --- Configuration ---
-st.markdown("""
-<style>
-/* اعمال حداقل عرض برای اپلیکیشن حتی در گوشی */
-@media screen and (max-width: 768px) {
-    .block-container {
-        min-width: 1024px !important;
-        max-width: 1024px !important;
-        margin: 0 auto !important;
-        zoom: 80%;
-    }
-    header, footer, .st-emotion-cache-1dp5vir { 
-        display: none; /* اختیاری: پنهان کردن header و footer Streamlit */
-    }
-}
-
-/* جلوگیری از جمع شدن ستون‌ها در گوشی */
-.css-1kyxreq {
-    flex-direction: row !important;
-    gap: 20px !important;
-}
-</style>
-""", unsafe_allow_html=True)
 
 st.set_page_config(page_title="Heart Disease Risk Checker", page_icon="❤️", layout="centered")
 
