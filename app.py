@@ -70,11 +70,24 @@ st.markdown("""
     .styled-table th {
         background-color: #1A202C;
         color: #F26A6A;
+        font-size: 16px;
         font-weight: 700;
         padding: 14px 16px;
         text-align: center;
         vertical-align: middle;
+        line-height: 1.2;
         letter-spacing: 0.4px;
+    }
+    .styled-table th * {
+        font-size: 16px !important;
+        font-weight: 700;
+    }
+    .styled-table th .tooltip-icon {
+        font-size: 13px !important;
+        font-weight: normal;
+        vertical-align: middle;
+        opacity: 0.8;
+        margin-left: 4px;
     }
     .styled-table td {
         background-color: #1F2937;
@@ -153,6 +166,21 @@ st.markdown("""
         font-weight: 400 !important;
         color: #ccc !important;
         padding: 6px 10px !important;
+    }
+
+    /* ⭐ Styling Stars */
+    .styled-table td span,
+    .styled-table th span {
+        font-size: 15px;
+        font-weight: 700;
+        letter-spacing: 1px;
+    }
+    
+    .styled-table td span.star {
+        color: gold;
+        text-shadow: 1px 1px 2px #00000088;
+        font-size: 18px;
+        margin-right: 2px;
     }
 </style>
 """, unsafe_allow_html=True)
@@ -345,33 +373,47 @@ if submitted:
             input_encoded = input_encoded.reindex(columns=ENCODER_COLUMNS, fill_value=0)
             X_scaled = SCALER.transform(input_encoded)
 
-            # Model recall dictionary (hardcoded for simplicity)
-            MODEL_RECALLS = {
-                "Support Vector Machine (SVM)": 89.29,
-                "Naive Bayes": 78.57,
-                "Logistic Regression": 82.14,
-                "Multi-Layer Perceptron (MLP)": 85.71,
-                "Decision Tree": 78.57,
-                "K-Nearest Neighbors (KNN)": 78.57,
-                "Random Forest": 89.29,
-                "XGBoost": 85.71,
-                "AdaBoost": 89.29,
-                "LightGBM": 89.29,
-                "Voting Ensemble": 92.86,
-                "Stacking Ensemble": 85.71
+            # Model Scientific Score dictionary
+            MODEL_Scientific_Score = {
+                "Support Vector Machine (SVM)": 92.51,
+                "Stacking Ensemble": 92.03,
+                "Voting Ensemble": 90.19,
+                "Logistic Regression": 89.98,
+                "Multi-Layer Perceptron (MLP)": 88.96,   # همان Neural Network
+                "XGBoost": 87.50,
+                "AdaBoost": 86.77,
+                "LightGBM": 85.43,
+                "K-Nearest Neighbors (KNN)": 84.78,
+                "Random Forest": 84.11,
+                "Naive Bayes": 83.30,
+                "Decision Tree": 76.51
             }
 
+
             # Sort models by recall score
-            sorted_models = sorted(MODELS.items(), key=lambda x: MODEL_RECALLS.get(x[0], 0), reverse=True)
+            sorted_models = sorted(MODELS.items(), key=lambda x: MODEL_Scientific_Score.get(x[0], 0), reverse=True)
 
             # Create display names with tooltips
             header_with_tooltip = (
-                f"<span>Predictor <span class='tooltip' title='Sorted from best to worst model based on Recall score'>?</span></span>"
+                f"<span>Predictor <span class='tooltip' title='Sorted from best to worst model based on Scientific Score'>?</span></span>"
             )
+
+            def star_rating(i):
+                if i < 5:
+                    full = 5 - i
+                    empty = i
+                else:
+                    full = 0
+                    empty = 5
+                stars = "".join([f"<span class='star'>★</span>" for _ in range(full)])
+                stars += "".join([f"<span class='star' style='color:gray;'>☆</span>" for _ in range(empty)])
+                return stars
             display_names = [
-                f"<span>Predictor {chr(65+i)} <span class='tooltip' title='{model_name} (Recall: {MODEL_RECALLS[model_name]:.2f}%)'>?</span></span>"
+                f"{star_rating(i)} Predictor {chr(65+i)} <span class='tooltip' title='{model_name} (Scientific Score: {MODEL_Scientific_Score[model_name]:.2f}%)'>?</span>"
                 for i, (model_name, _) in enumerate(sorted_models)
             ]
+
+
 
             # Perform predictions
             results = []
