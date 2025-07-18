@@ -8,14 +8,24 @@ from datetime import datetime
 import pytz
 import jdatetime
 import time
+import streamlit.components.v1 as components
 
 # ============================
 # ❤️ Heart Disease Risk Checker — Stylish & Improved UI
 # ============================
 
 # --- Configuration ---
-
 st.set_page_config(page_title="Heart Disease Risk Checker", page_icon="❤️", layout="centered")
+
+# --- Force Desktop Viewport on Mobile ---
+components.html("""
+    <script>
+        const meta = document.createElement('meta');
+        meta.name = "viewport";
+        meta.content = "width=1200";
+        document.getElementsByTagName('head')[0].appendChild(meta);
+    </script>
+""", height=0)
 
 # --- Load Models and Preprocessors ---
 model_dir = "saved_models"
