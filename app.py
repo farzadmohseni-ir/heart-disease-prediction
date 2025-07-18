@@ -224,43 +224,43 @@ with st.form("user_input"):
 
     with col1:
         # Slider for age input
-        age = st.slider("Age", 20, 90, help="Patient's age in years")
+        age = st.slider("Age", 20, 90, help="Patient's age")
         # Dropdown for biological sex
-        sex = custom_selectbox("Sex", ["Male", "Female"], key="sex", help_text="Biological sex of the patient")
+        sex = custom_selectbox("Sex", ["Male", "Female"], key="sex", help_text="sex")
         # Dropdown for chest pain type
         cp = custom_selectbox(
             "Chest Pain Type",
             ["Typical Angina", "Atypical Angina", "Non-Anginal Pain", "Asymptomatic"],
             key="cp",
-            help_text="Type of chest pain experienced"
+            help_text="cp"
         )
         # Input for resting blood pressure
         trestbps = st.number_input(
             "Resting Blood Pressure (mm Hg)",
             min_value=80,
             max_value=200,
-            help="Resting blood pressure in mm Hg"
+            help="trestbps"
         )
         # Input for cholesterol level
         chol = st.number_input(
             "Serum Cholesterol (mg/dl)",
             min_value=100,
             max_value=600,
-            help="Serum cholesterol level in mg/dl"
+            help="chol"
         )
         # Dropdown for fasting blood sugar
         fbs = custom_selectbox(
             "Fasting Blood Sugar > 120 mg/dl?",
             ["True", "False"],
             key="fbs",
-            help_text="Fasting blood sugar > 120 mg/dl"
+            help_text="fbs"
         )
         # Dropdown for ECG results
         restecg = custom_selectbox(
             "Resting Electrocardiographic Results",
             ["Normal", "ST-T abnormality", "Left Ventricular Hypertrophy"],
             key="restecg",
-            help_text="Resting ECG results"
+            help_text="restecg"
         )
 
     with col2:
@@ -269,14 +269,14 @@ with st.form("user_input"):
             "Maximum Heart Rate Achieved (bpm)",
             min_value=70,
             max_value=210,
-            help="Maximum heart rate achieved during exercise"
+            help="thalach"
         )
         # Dropdown for exercise-induced angina
         exang = custom_selectbox(
             "Exercise Induced Angina",
             ["Yes", "No"],
             key="exang",
-            help_text="Presence of exercise-induced angina"
+            help_text="exang"
         )
         # Slider for ST depression
         oldpeak = st.slider(
@@ -284,28 +284,28 @@ with st.form("user_input"):
             0.0,
             6.0,
             step=0.1,
-            help="ST depression induced by exercise relative to rest"
+            help="oldpeak"
         )
         # Dropdown for ST segment slope
         slope = custom_selectbox(
             "Slope of Peak Exercise ST Segment",
             ["Upsloping", "Flat", "Downsloping"],
             key="slope",
-            help_text="Slope of the peak exercise ST segment"
+            help_text="slope"
         )
         # Dropdown for number of major vessels
         ca = custom_selectbox(
             "Number of Major Vessels Colored by Fluoroscopy",
             ["0", "1", "2", "3"],
             key="ca",
-            help_text="Number of major vessels (0-3) colored by fluoroscopy"
+            help_text="ca"
         )
         # Dropdown for thalassemia
         thal = custom_selectbox(
             "Thalassemia",
             ["Normal", "Fixed Defect", "Reversible Defect"],
             key="thal",
-            help_text="Thalassemia test result"
+            help_text="thal"
         )
 
     # Submit button for the form
