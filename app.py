@@ -7,6 +7,7 @@ from datetime import datetime
 import pytz
 import jdatetime
 import time
+import sys
 
 # ============================
 # ❤️ Heart Disease Risk Checker — Stylish & Improved UI
@@ -21,7 +22,13 @@ st.set_page_config(
 
 # --- Load Models and Preprocessors ---
 # Define the directory for saved models
-MODEL_DIR = "saved_models"
+if getattr(sys, 'frozen', False):
+    BASE_PATH = sys._MEIPASS  # حالت اجرای فایل exe
+else:
+    BASE_PATH = os.path.dirname(os.path.abspath(__file__))  # حالت اجرای .py
+
+MODEL_DIR = os.path.join(BASE_PATH, "saved_models")
+
 
 # Dictionary to store machine learning models
 MODELS = {
