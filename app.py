@@ -17,16 +17,25 @@ components.html("""
     <script>
         const meta = document.createElement('meta');
         meta.name = "viewport";
-        const scale = window.innerWidth / 1200;
+        const scale = Math.min(window.innerWidth / 1200, 1.0);
         meta.content = `width=1200, initial-scale=${scale}, maximum-scale=${scale}, user-scalable=no`;
         document.getElementsByTagName('head')[0].appendChild(meta);
 
         function adjustScale() {
             const scale = window.innerWidth / 1200;
             document.documentElement.style.setProperty('--scale', scale);
-            document.querySelector('.stApp').style.width = '1200px';
+            const app = document.querySelector('.stApp');
+            app.style.width = '1200px';
+            app.style.transform = `scale(${scale})`;
+            app.style.transformOrigin = 'top left';
             document.body.style.width = window.innerWidth + 'px';
             document.body.style.overflowX = 'hidden';
+            document.documentElement.style.overflowX = 'hidden';
+            const containers = document.querySelectorAll('[data-testid="stAppViewContainer"]');
+            containers.forEach(container => {
+                container.style.width = '100%';
+                container.style.overflowX = 'hidden';
+            });
         }
         adjustScale();
         window.addEventListener('resize', adjustScale);
@@ -36,7 +45,8 @@ components.html("""
             columns.forEach(col => {
                 col.style.display = 'flex';
                 col.style.flexWrap = 'nowrap';
-                col.style.width = '100%';
+                col.style.width = '1200px';
+                col.style.boxSizing = 'border-box';
                 col.querySelectorAll('div').forEach(child => {
                     child.style.width = '50%';
                     child.style.padding = '0 10px';
@@ -44,6 +54,10 @@ components.html("""
                 });
             });
         });
+
+        console.log('Window width:', window.innerWidth);
+        console.log('Scale:', window.innerWidth / 1200);
+        console.log('stApp width:', document.querySelector('.stApp').offsetWidth);
     </script>
 """, height=0)
 
@@ -55,13 +69,22 @@ st.markdown("""
         transform: scale(var(--scale, 1));
         transform-origin: top left;
         margin: 0;
-        padding: 0 10px;
+        padding: 0;
         box-sizing: border-box;
+        overflow: hidden;
+    }
+    body {
+        width: 100%;
+        margin: 0;
+        padding: 0;
+        overflow-x: hidden;
+        overflow-y: auto;
     }
     .stColumns > div {
         display: flex !important;
         flex-wrap: nowrap !important;
-        width: 100%;
+        width: 1200px;
+        box-sizing: border-box;
     }
     .stColumns > div > div {
         width: 50% !important;
@@ -132,20 +155,23 @@ st.markdown("""
     }
     @media (max-width: 1200px) {
         .stApp {
-            width: 1200px;
-            transform: scale(var(--scale));
+            width: 1200px !important;
+            transform: scale(var(--scale)) !important;
             transform-origin: top left;
         }
         body {
-            overflow-x: hidden;
             width: 100%;
             margin: 0;
+            overflow-x: hidden;
+        }
+        html {
+            width: 100%;
+            overflow-x: hidden;
         }
     }
 </style>
 """, unsafe_allow_html=True)
 
-# بقیه کد شما (بدون تغییر)
 # --- Load Models and Preprocessors ---
 model_dir = "saved_models"
 models = {
