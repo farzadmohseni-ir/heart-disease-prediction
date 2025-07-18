@@ -1,4 +1,3 @@
-
 import streamlit as st
 import pandas as pd
 import numpy as np
@@ -10,23 +9,132 @@ import jdatetime
 import time
 import streamlit.components.v1 as components
 
-# ============================
-# ❤️ Heart Disease Risk Checker — Stylish & Improved UI
-# ============================
-
-# --- Configuration ---
+# تنظیم پیکربندی صفحه
 st.set_page_config(page_title="Heart Disease Risk Checker", page_icon="❤️", layout="centered")
 
-# --- Force Desktop Viewport on Mobile ---
+# تنظیم Viewport و مقیاس پویا
 components.html("""
     <script>
         const meta = document.createElement('meta');
         meta.name = "viewport";
-        meta.content = "width=1200";
+        const scale = Math.min(window.innerWidth / 1200, 1.0);
+        meta.content = `width=1200, initial-scale=${scale}, maximum-scale=${scale}, user-scalable=no`;
         document.getElementsByTagName('head')[0].appendChild(meta);
+
+        function adjustScale() {
+            const scale = Math.min(window.innerWidth / 1200, 1.0);
+            document.documentElement.style.setProperty('--scale', scale);
+            document.querySelector('.stApp').style.width = '1200px';
+        }
+        adjustScale();
+        window.addEventListener('resize', adjustScale);
+
+        document.addEventListener('DOMContentLoaded', () => {
+            const columns = document.querySelectorAll('.stColumns > div');
+            columns.forEach(col => {
+                col.style.display = 'flex';
+                col.style.flexWrap = 'nowrap';
+                col.querySelectorAll('div').forEach(child => {
+                    child.style.width = '50%';
+                    child.style.padding = '0 10px';
+                });
+            });
+        });
     </script>
 """, height=0)
 
+# CSS برای حفظ ظاهر دسکتاپ
+st.markdown("""
+<style>
+    .stApp {
+        width: 1200px;
+        margin: 0 auto;
+        overflow-x: hidden;
+    }
+    .stColumns > div {
+        display: flex !important;
+        flex-wrap: nowrap !important;
+    }
+    .stColumns > div > div {
+        width: 50% !important;
+        padding: 0 10px;
+    }
+    .styled-table {
+        width: 100%;
+        max-width: 1200px;
+        border-collapse: collapse;
+        font-family: 'Roboto', sans-serif;
+        font-size: 16px;
+        margin-top: 1rem;
+        border-radius: 8px;
+        box-shadow: 0 2px 4px rgba(0,0,0,0.3);
+    }
+    .styled-table th {
+        background-color: #1A202C;
+        color: #F26A6A;
+        font-weight: 700;
+        padding: 14px 16px;
+        text-align: center;
+    }
+    .styled-table td {
+        background-color: #1F2937;
+        color: #E5E7EB;
+        padding: 12px 16px;
+        text-align: center;
+    }
+    .styled-table tr:nth-child(even) {
+        background-color: #2A2D3A;
+    }
+    .styled-table td[style*="color:#2ecc71"] {
+        color: #27AE60;
+    }
+    .styled-table td[style*="color:#e74c3c"] {
+        color: #E74C3C;
+    }
+    .tooltip {
+        display: inline-block;
+        background-color: #A0AEC0;
+        border-radius: 50%;
+        width: 16px;
+        height: 16px;
+        color: #1A202C;
+        font-size: 12px;
+        line-height: 16px;
+        text-align: center;
+        margin-left: 6px;
+        cursor: help;
+        font-weight: bold;
+    }
+    .footer {
+        margin-top: 2rem;
+        padding-top: 1rem;
+        text-align: center;
+        font-size: 0.85rem;
+        color: #999;
+        border-top: 1px solid #555;
+    }
+    div[data-baseweb="form-control"] > label {
+        font-size: 15px !important;
+        font-weight: 700 !important;
+        color: #eeeeee !important;
+    }
+    .stTextInput input, .stNumberInput input, .stSelectbox div[data-baseweb="select"] > div {
+        font-size: 13px !important;
+    }
+    @media (max-width: 1200px) {
+        .stApp {
+            transform: scale(var(--scale, 1));
+            transform-origin: top left;
+            width: 1200px !important;
+        }
+        body {
+            overflow-x: hidden;
+        }
+    }
+</style>
+""", unsafe_allow_html=True)
+
+# بقیه کد شما (بدون تغییر)
 # --- Load Models and Preprocessors ---
 model_dir = "saved_models"
 models = {
@@ -45,119 +153,6 @@ models = {
 }
 scaler = joblib.load(os.path.join(model_dir, "scaler.pkl"))
 encoder_columns = joblib.load(os.path.join(model_dir, "encoder_columns.pkl"))
-
-# --- CSS Styling ---
-st.markdown("""
-<style>
-    /* Date-Time Bar */
-    .date-time-bar {
-        background: #222;
-        padding: 5px 10px;
-        border-radius: 10px;
-        box-shadow: 0 2px 4px rgba(0,0,0,0.2);
-        color: #bbb;
-        font-size: 0.85rem;
-    }
-
-    /* Table Styling */
-    .styled-table {
-        width: 100%;
-        border-collapse: collapse;
-        font-family: 'Roboto', sans-serif;
-        font-size: 16px;
-        margin-top: 1rem;
-        border-radius: 8px;
-        box-shadow: 0 2px 4px rgba(0,0,0,0.3);
-    }
-    .styled-table th {
-        background-color: #1A202C;
-        color: #F26A6A;
-        font-weight: 700;
-        padding: 14px 16px;
-        text-align: center;
-        vertical-align: middle;
-        letter-spacing: 0.4px;
-    }
-    .styled-table td {
-        background-color: #1F2937;
-        color: #E5E7EB;
-        padding: 12px 16px;
-        text-align: center;
-        vertical-align: middle;
-    }
-    .styled-table tr:nth-child(even) {
-        background-color: #2A2D3A;
-    }
-    .styled-table tr:nth-child(odd) {
-        background-color: #1F2937;
-    }
-    .styled-table td[style*="color:#2ecc71"] {
-        color: #27AE60;
-    }
-    .styled-table td[style*="color:#e74c3c"] {
-        color: #E74C3C;
-    }
-
-    /* Unified Tooltip */
-    .tooltip {
-        display: inline-block;
-        background-color: #A0AEC0;
-        border-radius: 50%;
-        width: 16px;
-        height: 16px;
-        color: #1A202C;
-        font-size: 12px;
-        line-height: 16px;
-        text-align: center;
-        margin-left: 6px;
-        cursor: help;
-        font-weight: bold;
-    }
-
-    /* Footer Styling */
-    .footer {
-        margin-top: 2rem;
-        padding-top: 1rem;
-        text-align: center;
-        font-size: 0.85rem;
-        color: #999;
-        border-top: 1px solid #555;
-        animation: pulse 2s infinite;
-    }
-    @keyframes pulse {
-        0% { color: #999; }
-        50% { color: #bbb; }
-        100% { color: #999; }
-    }
-
-    /* Form Label Styling */
-    div[data-baseweb="form-control"] > label {
-        font-size: 15px !important;
-        font-weight: 700 !important;
-        color: #eeeeee !important;
-        margin-bottom: 6px !important;
-        letter-spacing: 0.3px;
-    }
-
-    /* Input Value Styling */
-    .stTextInput input,
-    .stNumberInput input,
-    .stSelectbox div[data-baseweb="select"] > div,
-    .stSlider {
-        font-size: 13px !important;
-        font-weight: 500 !important;
-        color: #cccccc !important;
-    }
-
-    /* Dropdown Menu Option Styling */
-    div[data-baseweb="menu"] * {
-        font-size: 10px !important;
-        font-weight: 400 !important;
-        color: #ccc !important;
-        padding: 6px 10px !important;
-    }
-</style>
-""", unsafe_allow_html=True)
 
 # --- Date-Time Display (Shamsi + Tehran Time) ---
 now_tehran = datetime.now(pytz.timezone("Asia/Tehran"))
@@ -308,7 +303,6 @@ if submitted:
         # Show Results Table after prediction
         st.subheader("📋 Prediction Results")
         st.markdown(df_predictions.to_html(escape=False, index=False, classes="styled-table"), unsafe_allow_html=True)
-
 
 # --- Footer ---
 st.markdown("""
