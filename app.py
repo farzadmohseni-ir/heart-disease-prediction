@@ -12,19 +12,21 @@ import streamlit.components.v1 as components
 # تنظیم پیکربندی صفحه
 st.set_page_config(page_title="Heart Disease Risk Checker", page_icon="❤️", layout="centered")
 
-# تنظیم Viewport و مقیاس پویا
+# تنظیم Viewport و مقیاس
 components.html("""
     <script>
         const meta = document.createElement('meta');
         meta.name = "viewport";
-        const scale = Math.min(window.innerWidth / 1200, 1.0);
+        const scale = window.innerWidth / 1200;
         meta.content = `width=1200, initial-scale=${scale}, maximum-scale=${scale}, user-scalable=no`;
         document.getElementsByTagName('head')[0].appendChild(meta);
 
         function adjustScale() {
-            const scale = Math.min(window.innerWidth / 1200, 1.0);
+            const scale = window.innerWidth / 1200;
             document.documentElement.style.setProperty('--scale', scale);
             document.querySelector('.stApp').style.width = '1200px';
+            document.body.style.width = window.innerWidth + 'px';
+            document.body.style.overflowX = 'hidden';
         }
         adjustScale();
         window.addEventListener('resize', adjustScale);
@@ -34,9 +36,11 @@ components.html("""
             columns.forEach(col => {
                 col.style.display = 'flex';
                 col.style.flexWrap = 'nowrap';
+                col.style.width = '100%';
                 col.querySelectorAll('div').forEach(child => {
                     child.style.width = '50%';
                     child.style.padding = '0 10px';
+                    child.style.boxSizing = 'border-box';
                 });
             });
         });
@@ -48,16 +52,21 @@ st.markdown("""
 <style>
     .stApp {
         width: 1200px;
-        margin: 0 auto;
-        overflow-x: hidden;
+        transform: scale(var(--scale, 1));
+        transform-origin: top left;
+        margin: 0;
+        padding: 0 10px;
+        box-sizing: border-box;
     }
     .stColumns > div {
         display: flex !important;
         flex-wrap: nowrap !important;
+        width: 100%;
     }
     .stColumns > div > div {
         width: 50% !important;
         padding: 0 10px;
+        box-sizing: border-box;
     }
     .styled-table {
         width: 100%;
@@ -123,12 +132,14 @@ st.markdown("""
     }
     @media (max-width: 1200px) {
         .stApp {
-            transform: scale(var(--scale, 1));
+            width: 1200px;
+            transform: scale(var(--scale));
             transform-origin: top left;
-            width: 1200px !important;
         }
         body {
             overflow-x: hidden;
+            width: 100%;
+            margin: 0;
         }
     }
 </style>
