@@ -13,9 +13,6 @@ Predicting heart disease using various machine learning algorithms and the UCI C
 </p>
 
 
-
-
-
 ---
 
 
