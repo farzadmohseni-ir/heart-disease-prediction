@@ -1,6 +1,23 @@
 # heart-disease-prediction
 Predicting heart disease using various machine learning algorithms and the UCI Cleveland dataset.
 
+<p align="center">
+  <a href="https://colab.research.google.com/drive/1-YUv7Ws0t1QpE2biiBbVOFT82x_tZPTE?usp=sharing">
+    <img src="https://img.shields.io/badge/Open%20in%20Colab-F9AB00?logo=google-colab&logoColor=white&style=for-the-badge" alt="Colab">
+  </a>
+  <a href="https://heart-disease-prediction-with-farzad-mohseni.streamlit.app/">
+    <img src="https://img.shields.io/badge/Open%20in%20Streamlit-262730?logo=streamlit&logoColor=white&style=for-the-badge" alt="Streamlit">
+  </a>
+  <img src="https://img.shields.io/badge/🌍%20VPN_REQUIRED-orange?style=for-the-badge" alt="VPN Required">
+  <img src="https://img.shields.io/badge/💻%20BEST_ON_DESKTOP-blue?style=for-the-badge" alt="Best on Desktop">
+</p>
+
+
+
+
+
+---
+
 
 # 💓 Heart Disease Prediction using Machine Learning
 
