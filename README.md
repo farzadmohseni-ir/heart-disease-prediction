@@ -15,7 +15,6 @@ Predicting heart disease using various machine learning algorithms and the UCI C
 
 ---
 
-
 # 💓 Heart Disease Prediction using Machine Learning
 
 A machine learning project to predict heart disease based on clinical features using various classification algorithms. This implementation is inspired by the paper:  
