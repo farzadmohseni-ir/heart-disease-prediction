@@ -123,3 +123,29 @@ You can try the app instantly via Streamlit Cloud:
 > - Please ensure your **VPN is active** if access is restricted in your region.
 > - Use **Desktop View** for proper layout and display.
 
+---
+
+## ⚠️ Limitations
+
+This project, while demonstrating the potential of machine learning for heart disease prediction, has several limitations:
+
+- 📊 **Small dataset**: The UCI Cleveland dataset includes only 297 records, which may lead to overfitting and limit the model's generalizability to diverse populations.
+- 🌍 **Geographical bias**: The dataset is based on patients from a specific region, potentially reducing the model's accuracy for global or demographically different populations.
+- 🩺 **Limited clinical features**: Only 13 features are used, whereas real-world diagnostics often include additional data like imaging or advanced biomarkers.
+- 🧪 **Lack of external validation**: The model has not been tested on independent or real-time clinical data, limiting its real-world applicability.
+
+📌 *This project is for educational and experimental purposes only and should not be used for medical decision-making.*
+
+---
+
+## 🤝 Contributions
+
+We welcome contributions to make this project even better! 🎉 If you'd like to contribute, here are some ideas:
+
+- Enhance the model or training pipeline (e.g., hyperparameter tuning, new algorithms)
+- Add support for larger or more diverse datasets
+- Improve the UI/UX of the Streamlit app
+- Fix bugs or optimize performance
+- Translate the app into other languages
+
+📬 Have a new feature idea or want to collaborate on expanding the dataset? Feel free to reach out directly!
