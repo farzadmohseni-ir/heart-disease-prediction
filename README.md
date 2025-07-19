@@ -71,3 +71,55 @@ A machine learning project to predict heart disease based on clinical features u
 📌 **Conclusion:**  
 The **Stacking Classifier** showed the best overall performance, combining high precision, recall, and F1 score.
 
+---
+
+## ▶️ How to Run the Project
+
+You can run this heart disease prediction app in **two ways**:
+
+---
+
+### 🖥️ Option 1: Run Locally (Recommended for Developers)
+
+> ✅ **Requirements**  
+> - Python: `3.11.13`  
+> - Dependencies: Listed in `requirements.txt`  
+> - OS: Windows, macOS, or Linux
+
+#### 📌 Steps:
+
+```bash
+# 1. Clone the repository
+git clone https://github.com/your-username/heart-disease-prediction.git
+cd heart-disease-prediction
+
+# 2. (Optional) Create and activate a virtual environment
+python -m venv venv
+
+# On Windows:
+venv\Scripts\activate
+# On Mac/Linux:
+source venv/bin/activate
+
+# 3. Install required dependencies
+pip install -r requirements.txt
+
+# 4. Run the Streamlit app
+streamlit run app.py
+```
+
+The app will launch at:  
+👉 `http://localhost:8501`
+
+---
+
+### 🌐 Option 2: Run Online (Zero Setup)
+
+You can try the app instantly via Streamlit Cloud:
+
+🔗 **[Launch App Online](https://heart-disease-prediction-with-farzad-mohseni.streamlit.app/)**
+
+> ⚠️ **Important Notes:**
+> - Please ensure your **VPN is active** if access is restricted in your region.
+> - Use **Desktop View** for proper layout and display.
+
