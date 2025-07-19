@@ -39,37 +39,23 @@ A machine learning project to predict heart disease based on clinical features u
 
 ---
 
-## ⚙️ ML Algorithms Implemented
+## ⚙️ ML Algorithms Implemented & Results (Test Set)
 
-✅ This project compares and evaluates the following classification models:
 
-- Support Vector Machine (SVM)
-- Naïve Bayes
-- Logistic Regression
-- Decision Tree
-- K-Nearest Neighbors (KNN)
-- Neural Network (MLPClassifier)
-- Random Forest
-- XGBoost
-- AdaBoost
-- LightGBM
-- Voting Classifier
-- Stacking Classifier
-
----
-
-## 📊 Results (Test Set)
-
-| Model               | Accuracy | Precision | Recall | F1 Score |
-|---------------------|----------|-----------|--------|----------|
-| **SVM**             | 93.33%   | 96.15%    | 89.29% | 92.59%   |
-| **Logistic Reg.**   | 91.67%   | 100.00%   | 82.14% | 90.20%   |
-| **Stacking Class.** | 93.33%   | 100.00%   | 85.71% | 92.31%   |
-| **Voting Classifier** | 90.00% | 86.67%    | 92.86% | 89.66%   |
-| *...others included in full report* |
-
-📌 **Conclusion:**  
-The **Stacking Classifier** showed the best overall performance, combining high precision, recall, and F1 score.
+| Model               | Accuracy | Precision | Recall | Specificity | F1 Score |
+|---------------------|----------|-----------|--------|-------------|----------|
+| **SVM**             | 93.33%   | 96.15%    | 89.29% | 96.88%      | 92.59%   |
+| **Naive Bayes**     | 85.00%   | 88.00%    | 78.57% | 90.62%      | 83.02%   |
+| **Logistic Regression** | 91.67% | 100.00%   | 82.14% | 100.00%     | 90.20%   |
+| **Neural Network**  | 90.00%   | 92.31%    | 85.71% | 93.75%      | 88.89%   |
+| **Decision Tree**   | 76.67%   | 73.33%    | 78.57% | 75.00%      | 75.86%   |
+| **KNN**             | 86.67%   | 91.67%    | 78.57% | 93.75%      | 84.62%   |
+| **Random Forest**   | 83.33%   | 78.12%    | 89.29% | 78.12%      | 83.33%   |
+| **XGBoost**         | 83.33%   | 88.89%    | 85.71% | 90.62%      | 87.27%   |
+| **AdaBoost**        | 86.67%   | 83.33%    | 89.29% | 84.38%      | 86.21%   |
+| **LightGBM**        | 85.00%   | 80.65%    | 89.29% | 81.25%      | 84.75%   |
+| **Voting Classifier** | 90.00% | 86.67%    | 92.86% | 87.50%      | 89.66%   |
+| **Stacking Classifier** | 93.33% | 100.00%   | 85.71% | 100.00%     | 92.31%   |
 
 ---
 
