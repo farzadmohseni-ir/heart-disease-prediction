@@ -77,7 +77,6 @@ The **Stacking Classifier** showed the best overall performance, combining high 
 
 You can run this heart disease prediction app in **two ways**:
 
----
 
 ### 🖥️ Option 1: Run Locally (Recommended for Developers)
 
@@ -86,7 +85,7 @@ You can run this heart disease prediction app in **two ways**:
 > - Dependencies: Listed in `requirements.txt`  
 > - OS: Windows, macOS, or Linux
 
-#### 📌 Steps:
+### 📌 Steps:
 
 ```bash
 # 1. Clone the repository
@@ -106,7 +105,7 @@ pip install -r requirements.txt
 
 # 4. Run the Streamlit app
 streamlit run app.py
-```
+
 
 The app will launch at:  
 👉 `http://localhost:8501`
