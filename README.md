@@ -111,7 +111,7 @@ The app will launch at:
 👉 `http://localhost:8501`
 
 ```
----
+
 
 ### 🌐 Option 2: Run Online (Zero Setup)
 
