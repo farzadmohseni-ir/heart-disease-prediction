@@ -103,6 +103,13 @@ You can try the app instantly via Streamlit Cloud:
 > - Please ensure your **VPN is active** if access is restricted in your region.
 > - Use **Desktop View** for proper layout and display.
 
+
+<p align="center">
+  <img src="images/app-1.jpg" width="400" style="margin-right: 20px;">
+  <img src="images/app-2.jpg" width="400">
+</p>
+
+
 ---
 
 ## ⚠️ Limitations
