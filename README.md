@@ -39,6 +39,37 @@ A machine learning project to predict heart disease based on clinical features u
 
 ---
 
+
+
+
+---
+
+## 🧮 Scientific Scoring Formula for Medical Models
+
+In clinical prediction tasks, minimizing false negatives is crucial. Therefore, we use a weighted formula to evaluate models more scientifically:
+
+**Scientific Score** = 0.35 × Recall + 0.30 × F1 Score + 0.15 × Specificity + 0.10 × Precision + 0.10 × Accuracy
+
+
+<div style="display: flex; justify-content: space-between; gap: 20px; flex-wrap: wrap;">
+
+  <div style="flex: 1; min-width: 300px; text-align: center;">
+    <img src="images/rank models.jpg" alt="Scientific Model Ranking" style="width: 100%; max-width: 500px; border-radius: 8px;">
+  </div>
+<\b>
+  <div style="flex: 1; min-width: 300px; text-align: center;">
+    <img src="images/test models.jpg" alt="Test Set Metrics Summary" style="width: 100%; max-width: 500px; border-radius: 8px;">
+  </div>
+
+</div>
+
+
+
+
+
+
+
+---
 ## ⚙️ ML Algorithms Implemented & Results (Test Set)
 
 
